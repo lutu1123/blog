@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+  {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+  </header>
+  <main class="container">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer">
+    <p>© {{ now.Year }} {{ .Site.Title }} · Powered by <a href="https://gohugo.io">Hugo</a> on GitHub Pages</p>
+  </footer>
+</body>
+</html>
