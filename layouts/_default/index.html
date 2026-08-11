@@ -1,13 +1,37 @@
+{{ define "title" }}{{ .Site.Title }} · {{ .Site.Params.description }}{{ end }}
 {{ define "main" }}
-<section class="posts">
-  <h1>最新文章</h1>
+<section class="hero">
+  <span class="hero-badge">✍️ AI 与工程实践</span>
+  <h1>{{ .Site.Title }}</h1>
+  <p>{{ .Site.Params.description }}</p>
+</section>
+
+<section>
+  <h2 class="section-head">📚 最新文章</h2>
+  {{ $pages := .Site.RegularPages }}
+  {{ if $pages }}
   <ul class="post-list">
-    {{ range .Site.RegularPages }}
+    {{ range $pages }}
     <li>
-      <a class="post-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <span class="post-meta">{{ .Date.Format "2006-01-02" }} · {{ with .Params.author }}{{ . }}{{ end }}</span>
+      <a class="post-card" href="{{ .RelPermalink }}">
+        <h3 class="post-card-title">{{ .Title }}</h3>
+        {{ with .Summary }}<p class="post-card-summary">{{ . | plainify | truncate 110 }}</p>{{ end }}
+        <div class="post-card-meta">
+          <span class="meta-item">📅 {{ .Date.Format "2006-01-02" }}</span>
+          {{ with .Params.author }}<span class="meta-item">👤 {{ . }}</span>{{ end }}
+          {{ with .ReadingTime }}<span class="meta-item">⏱ {{ . }} 分钟</span>{{ end }}
+          {{ with .Params.tags }}
+          <span class="meta-item">
+            {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+          </span>
+          {{ end }}
+        </div>
+      </a>
     </li>
     {{ end }}
   </ul>
+  {{ else }}
+  <div class="empty-state">还没有文章,敬请期待 🚧</div>
+  {{ end }}
 </section>
 {{ end }}

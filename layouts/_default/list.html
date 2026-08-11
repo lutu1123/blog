@@ -1,14 +1,26 @@
 {{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
 {{ define "main" }}
-<section class="posts">
-  <h1>{{ .Title }}</h1>
+<section>
+  <h2 class="section-head">{{ .Title }}</h2>
+  {{ $pages := .Pages }}
+  {{ if $pages }}
   <ul class="post-list">
-    {{ range .Pages }}
+    {{ range $pages }}
     <li>
-      <a class="post-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <span class="post-meta">{{ .Date.Format "2006-01-02" }} · {{ with .Params.author }}{{ . }}{{ end }}</span>
+      <a class="post-card" href="{{ .RelPermalink }}">
+        <h3 class="post-card-title">{{ .Title }}</h3>
+        {{ with .Summary }}<p class="post-card-summary">{{ . | plainify | truncate 110 }}</p>{{ end }}
+        <div class="post-card-meta">
+          <span class="meta-item">📅 {{ .Date.Format "2006-01-02" }}</span>
+          {{ with .Params.author }}<span class="meta-item">👤 {{ . }}</span>{{ end }}
+          {{ with .ReadingTime }}<span class="meta-item">⏱ {{ . }} 分钟</span>{{ end }}
+        </div>
+      </a>
     </li>
     {{ end }}
   </ul>
+  {{ else }}
+  <div class="empty-state">该分类下暂无文章 🚧</div>
+  {{ end }}
 </section>
 {{ end }}
