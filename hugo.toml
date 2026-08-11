@@ -1,0 +1,13 @@
+baseURL = "https://lutu1123.github.io/blog/"
+title = "路途的博客"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+enableEmoji = true
+
+[params]
+  description = "路途的博客:AI 与工程实践"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
