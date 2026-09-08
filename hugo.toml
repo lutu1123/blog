@@ -2,12 +2,38 @@ baseURL = "https://lutu1123.github.io/blog/"
 title = "路途的博客"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
+theme = "PaperMod"
 enableEmoji = true
+enableRobotsTXT = true
 
 [params]
-  description = "路途的博客:AI 与工程实践"
+  description = "AI 与工程实践"
+  author = "路途"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  disableSpecial1stPost = false
+  hidemeta = false
+  comments = false
+  displayFullLangName = true
+  [params.homeInfoParams]
+    Title = "你好,我是路途 👋"
+    Content = "记录 AI、智能体与工程实践,持续构建,持续分享。"
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/lutu1123"
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.highlight]
+    noClasses = false
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
