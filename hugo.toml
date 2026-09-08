@@ -21,6 +21,11 @@ enableRobotsTXT = true
   hidemeta = false
   comments = false
   displayFullLangName = true
+  [params.cover]
+    linkFullImages = false
+    responsiveImages = false
+    hiddenInList = false
+    hiddenInSingle = false
   [params.homeInfoParams]
     Title = "你好,我是路途 👋"
     Content = "记录 AI、智能体与工程实践,持续构建,持续分享。"

@@ -3,6 +3,9 @@ title: "Hermes Agent Kanban Swarm 功能深度解析(面向 AI 开发者)"
 date: 2026-08-11
 tags: ["hermes-agent", "kanban", "multi-agent", "ai-agents", "orchestration"]
 author: "路途"
+cover:
+  image: "/blog/covers/kanban-swarm.svg"
+  alt: "Kanban Swarm 多智能体协作编排封面"
 ---
 
 你有没有遇到过这样的场景:让 AI 跑一条多步骤流水线——调研、写作、审核、发布——结果子代理崩了,上下文全丢;任务做到一半,没人知道它卡在哪;想插入一个人类审核环节,却要改代码、重启进程。如果你被这类问题折磨过,Hermes Agent 的 Kanban Swarm 值得一看。

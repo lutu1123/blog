@@ -3,6 +3,9 @@ title: "如何使用 MCP(Model Context Protocol)工具:深度技术指南"
 date: 2026-09-08
 tags: [MCP, AI, LLM, Agent, 工具调用]
 author: "路途"
+cover:
+  image: "/blog/covers/mcp-tools.svg"
+  alt: "MCP Model Context Protocol 深度技术指南封面"
 ---
 
 给你的 LLM 应用接上「查数据库、订机票、读写文件」的能力,你要写什么?大概率是每个模型供应商一套 function calling 声明,换个宿主就重写一遍对接。这个痛点,MCP(Model Context Protocol)想一次性解决:像 USB-C 统一充电口一样统一 AI 应用与外部系统的连接——官方原话就叫 "a USB-C port for AI applications"。
