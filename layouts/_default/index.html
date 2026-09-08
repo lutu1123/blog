@@ -1,37 +1,44 @@
 {{ define "title" }}{{ .Site.Title }} · {{ .Site.Params.description }}{{ end }}
 {{ define "main" }}
-<section class="hero">
-  <span class="hero-badge">✍️ AI 与工程实践</span>
-  <h1>{{ .Site.Title }}</h1>
-  <p>{{ .Site.Params.description }}</p>
+<section class="hero hero-editorial">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> 独立思考 · 持续构建</div>
+    <h1>把复杂的技术<br><em>讲得清楚。</em></h1>
+    <p class="hero-lead">{{ .Site.Params.description }}<br>记录智能体、工具与真实工程实践。</p>
+    <a class="hero-cta" href="#articles">开始阅读 <span>↗</span></a>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+    <div class="art-core"><span>AI</span><small>LAB</small></div>
+    <div class="art-node node-a">⌘</div><div class="art-node node-b">✦</div><div class="art-node node-c">&lt;/&gt;</div>
+  </div>
 </section>
 
-<section>
-  <h2 class="section-head">📚 最新文章</h2>
-  {{ $pages := .Site.RegularPages }}
-  {{ if $pages }}
-  <ul class="post-list">
-    {{ range $pages }}
-    <li>
-      <a class="post-card" href="{{ .RelPermalink }}">
-        <h3 class="post-card-title">{{ .Title }}</h3>
-        {{ with .Summary }}<p class="post-card-summary">{{ . | plainify | truncate 110 }}</p>{{ end }}
-        <div class="post-card-meta">
-          <span class="meta-item">📅 {{ .Date.Format "2006-01-02" }}</span>
-          {{ with .Params.author }}<span class="meta-item">👤 {{ . }}</span>{{ end }}
-          {{ with .ReadingTime }}<span class="meta-item">⏱ {{ . }} 分钟</span>{{ end }}
-          {{ with .Params.tags }}
-          <span class="meta-item">
-            {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
-          </span>
-          {{ end }}
+<section class="content-layout" id="articles">
+  <div class="articles-column">
+    <div class="section-intro"><span class="section-kicker">01 / JOURNAL</span><h2>最新文章</h2><span class="section-line"></span></div>
+    {{ $pages := .Site.RegularPages }}
+    {{ if $pages }}
+    <div class="post-list">
+      {{ range $i, $p := $pages }}
+      <a class="post-card {{ if eq $i 0 }}featured{{ end }}" href="{{ $p.RelPermalink }}">
+        <div class="card-index">{{ printf "%02d" (add $i 1) }}</div>
+        <div class="card-body">
+          <div class="card-meta"><span>{{ $p.Date.Format "2006.01.02" }}</span><span class="meta-sep">·</span><span>{{ $p.ReadingTime }} MIN READ</span></div>
+          <h3>{{ $p.Title }}</h3>
+          {{ with $p.Summary }}<p>{{ . | plainify | truncate 145 }}</p>{{ end }}
+          <div class="card-bottom"><span class="read-more">阅读全文 <b>→</b></span>{{ with $p.Params.tags }}<span class="card-tag">{{ index . 0 }}</span>{{ end }}</div>
         </div>
+        <span class="card-arrow">↗</span>
       </a>
-    </li>
-    {{ end }}
-  </ul>
-  {{ else }}
-  <div class="empty-state">还没有文章,敬请期待 🚧</div>
-  {{ end }}
+      {{ end }}
+    </div>
+    {{ else }}<div class="empty-state">还没有文章,敬请期待 🚧</div>{{ end }}
+  </div>
+  <aside class="side-rail">
+    <div class="rail-block"><span class="section-kicker">ABOUT</span><p>你好,我是路途。这里是我的数字花园,分享我对 AI 与工程的观察、实践和思考。</p></div>
+    <div class="rail-block"><span class="section-kicker">TOPICS</span><div class="topic-list"><span>AI Agents</span><span>Developer Tools</span><span>Engineering</span><span>Open Source</span></div></div>
+    <div class="rail-note">“Stay curious.<br>Build things that matter.”</div>
+  </aside>
 </section>
 {{ end }}
